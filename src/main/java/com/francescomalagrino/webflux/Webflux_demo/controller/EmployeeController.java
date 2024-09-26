@@ -6,6 +6,7 @@ import com.francescomalagrino.webflux.Webflux_demo.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -28,5 +29,11 @@ public class EmployeeController {
     @GetMapping("{employeeId}")
     public Mono<EmployeeDto> getEmployeeById(@PathVariable String employeeId) {
         return employeeService.getEmployeeById(employeeId);
+    }
+
+    //Build Reactive Build all employee REST API
+    @GetMapping
+    public Flux<EmployeeDto> getAllEmployees() {
+        return employeeService.getAllEmployees();
     }
 }

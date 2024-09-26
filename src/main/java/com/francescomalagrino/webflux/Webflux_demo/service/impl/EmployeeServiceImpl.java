@@ -7,6 +7,7 @@ import com.francescomalagrino.webflux.Webflux_demo.repository.EmployeeRepository
 import com.francescomalagrino.webflux.Webflux_demo.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -20,12 +21,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         //convert EmployeeDTO into Employee Entity
         Employee employee = EmployeeMapper.mapToEmployee(employeeDto);
         Mono<Employee> saveEmployee = employeeRepository.save(employee);
-        return saveEmployee.map((employeeEntty) -> EmployeeMapper.mapToEmployeeDto(employeeEntty));
+        return saveEmployee.map(EmployeeMapper::mapToEmployeeDto);
     }
 
     @Override
     public Mono<EmployeeDto> getEmployeeById(String employeeId) {
        Mono<Employee> savedEmployee =  employeeRepository.findById(employeeId);
         return savedEmployee.map(EmployeeMapper::mapToEmployeeDto);
+    }
+
+    @Override
+    public Flux<EmployeeDto> getAllEmployees() {
+        Flux<Employee> employeeFlux = employeeRepository.findAll();
+        return employeeFlux
+                .map(EmployeeMapper::mapToEmployeeDto)
+                .switchIfEmpty(Flux.empty());
+
     }
 }
