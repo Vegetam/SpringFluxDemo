@@ -1,4 +1,4 @@
-# SpringFluxDemo
+# SpringWebFluxDemo
 A demo of using Spring Flux to build REST API
 
 #Technology Stack
