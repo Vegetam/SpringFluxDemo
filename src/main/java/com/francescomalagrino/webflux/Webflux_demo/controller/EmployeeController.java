@@ -41,4 +41,11 @@ public class EmployeeController {
     public Mono<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable("employeeId") String employeeId) {
         return employeeService.updateEmployee(employeeDto, employeeId);
     }
+
+    //Build Delete Employee REST API
+    @DeleteMapping("{employeeId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteEmployee(@PathVariable("employeeId") String employeeId) {
+        return employeeService.deleteEmployee(employeeId);
+    }
 }

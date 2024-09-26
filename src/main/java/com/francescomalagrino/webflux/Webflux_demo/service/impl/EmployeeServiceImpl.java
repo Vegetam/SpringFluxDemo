@@ -50,4 +50,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         });
         return updateEmployee.map(EmployeeMapper::mapToEmployeeDto);
     }
+
+    @Override
+    public Mono<Void> deleteEmployee(String employeeId) {
+        return employeeRepository.deleteById(employeeId);
+    }
 }
