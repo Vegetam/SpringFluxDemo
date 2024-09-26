@@ -9,4 +9,5 @@ public interface EmployeeService {
     Mono<EmployeeDto> save(EmployeeDto employeeDto);
     Mono<EmployeeDto> getEmployeeById(String employeeId);
     Flux<EmployeeDto> getAllEmployees();
+    Mono<EmployeeDto> updateEmployee(EmployeeDto employeeDto,String employeeId);
 }

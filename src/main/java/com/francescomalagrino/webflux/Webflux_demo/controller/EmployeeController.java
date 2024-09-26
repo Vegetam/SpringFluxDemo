@@ -25,15 +25,20 @@ public class EmployeeController {
     }
 
 
-    //Build Reactve Get Employee rest API
+    //Build Reactive Get Employee rest API
     @GetMapping("{employeeId}")
     public Mono<EmployeeDto> getEmployeeById(@PathVariable String employeeId) {
         return employeeService.getEmployeeById(employeeId);
     }
 
-    //Build Reactive Build all employee REST API
     @GetMapping
     public Flux<EmployeeDto> getAllEmployees() {
         return employeeService.getAllEmployees();
+    }
+
+    //Build Reactive Update Employee REST API
+    @PutMapping("{employeeId}")
+    public Mono<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable("employeeId") String employeeId) {
+        return employeeService.updateEmployee(employeeDto, employeeId);
     }
 }
