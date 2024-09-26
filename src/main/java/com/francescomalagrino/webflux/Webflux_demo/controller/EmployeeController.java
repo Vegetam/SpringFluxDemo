@@ -22,4 +22,11 @@ public class EmployeeController {
     public Mono<EmployeeDto> saveEmployee(@RequestBody EmployeeDto employeeDto) {
         return employeeService.save(employeeDto);
     }
+
+
+    //Build Reactve Get Employee rest API
+    @GetMapping("{employeeId}")
+    public Mono<EmployeeDto> getEmployeeById(@PathVariable String employeeId) {
+        return employeeService.getEmployeeById(employeeId);
+    }
 }
