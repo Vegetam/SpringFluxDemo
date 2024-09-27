@@ -16,3 +16,10 @@ Maven
 MongoDb
 
 Swagger
+
+Junit 5
+
+# How to use ?
+
+mvn clean install
+mvn spring-boot:run
