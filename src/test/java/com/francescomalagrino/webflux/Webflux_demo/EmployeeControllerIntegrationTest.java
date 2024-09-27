@@ -62,6 +62,7 @@ public class EmployeeControllerIntegrationTest {
 
         EmployeeDto savedEmployee = employeeService.save(employeeDto).block();
 
+        assert savedEmployee != null;
         webTestClient.get().uri("/api/employees/{employeeId}", Collections.singletonMap("employeeId",savedEmployee.getId()))
                 .exchange()
                 .expectStatus().isOk()
@@ -121,6 +122,7 @@ public class EmployeeControllerIntegrationTest {
         updateEmployee.setLastName("Malagrino2");
         updateEmployee.setEmail("email2@email.com");
 
+        assert saveEmployee != null;
         webTestClient.put().uri("/api/employees/{employeeId}", Collections.singletonMap("employeeId",saveEmployee.getId()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -145,6 +147,7 @@ public class EmployeeControllerIntegrationTest {
                 EmployeeDto saveEmployee = employeeService.save(employeeDto).block();
 
 
+                assert saveEmployee != null;
                 webTestClient.delete().uri("/api/employees/{employeeId}", Collections.singletonMap("employeeId",saveEmployee.getId()))
                 .exchange()
                 .expectStatus().isNoContent()
